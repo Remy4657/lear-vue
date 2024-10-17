@@ -10,14 +10,15 @@ const handle = () => {
 
 <template>
     <div>
-        <a>main office</a> <span>></span> <a>main office</a><a>main office</a> <span>></span>
-        <a>main office</a>
-        <a>main office</a> <span>></span> <a>main office</a>
+        <a>main office</a> <span>></span> <a>main office</a> <span>></span>
+        <a>main office</a> <span>></span> <a>main office</a><span>></span> <a>main office</a>
+        <span>></span> <a>main office</a>
     </div>
 </template>
 <style scoped>
 a {
     text-decoration: underline !important;
     color: blue !important;
+    cursor: pointer;
 }
 </style>

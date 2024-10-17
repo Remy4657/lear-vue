@@ -1,6 +1,9 @@
 <script setup>
-import { RouterLink, RouterView } from "vue-router";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { RouterLink } from "vue-router";
+
+const handleFocus = (e) => {
+    console.log("e: ", e.target.name);
+};
 </script>
 
 <template>
@@ -15,17 +18,19 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
         <div class="wrapper d-flex align-items-center">
             <nav>
-                <RouterLink to="/">Location list</RouterLink>
-                <RouterLink to="/about">Location map</RouterLink>
-                <RouterLink to="/test"> Location hidtory</RouterLink>
-                <RouterLink to="/attendance-status">Attendance status</RouterLink>
-                <RouterLink to="/attendance-history">Atendance history</RouterLink>
-                <RouterLink to="/office-history">Office usage history</RouterLink>
+                <RouterLink name="home" @click="handleFocus($event)" class="is-focused" to="/">Location list
+                </RouterLink>
+                <RouterLink name="about" @click="handleFocus($event)" to="/about">Location map</RouterLink>
+                <RouterLink name="test" @click="handleFocus($event)" to="/test">
+                    Location hidtory</RouterLink>
+                <RouterLink @click="handleFocus($event)" to="/attendance-status">Attendance status</RouterLink>
+                <RouterLink @click="handleFocus($event)" to="/attendance-history">Atendance history</RouterLink>
+                <RouterLink @click="handleFocus($event)" to="/office-history">Office usage history</RouterLink>
             </nav>
         </div>
 
         <div class="d-flex align-items-center">
-            <span style="margin-right: 15px; color: rgb(72 126 223)">
+            <span style="margin-right: 20px; color: rgb(72 126 223)">
                 <i class="pi pi-file-import" style="color: #266cca"></i> Manual
             </span>
 
@@ -40,10 +45,14 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 </template>
 <style scoped>
 nav a {
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 600;
     margin: 0 10px;
     color: #000;
+}
+
+nav a:hover {
+    color: var(-)
 }
 
 header {
@@ -57,5 +66,30 @@ header {
 
 span {
     height: fit-content;
+}
+
+.is-focused {
+    position: relative;
+    display: inline-block;
+    color: #006d70;
+}
+
+.is-focused::after {
+    content: "";
+    display: block;
+    width: 30px;
+    /* Độ dài của gạch dưới */
+    height: 4px;
+    /* Độ dày của gạch dưới */
+    background-color: #006d70;
+    /* Màu của gạch dưới */
+    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -5px;
+    /* Khoảng cách giữa chữ và gạch dưới */
+    border-radius: 10px;
+    /* Tạo bo góc cho gạch */
 }
 </style>

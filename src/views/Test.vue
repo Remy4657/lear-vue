@@ -3,7 +3,7 @@
         <div v-if="loading" class="loading">Loading...</div>
 
         <div v-if="error" class="error">{{ error }}</div>
-
+        <span>Message: {{ msg }}</span>
         <div v-if="post" class="content">
             <div v-for="item in post" :key="key">
                 {{ item.title }}
@@ -14,7 +14,6 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
     data() {
         return {
@@ -32,9 +31,10 @@ export default {
             // already being observed
             { immediate: true }
         );
+        //this.fetchData;
     },
     methods: {
-        async fetchData(id) {
+        async fetchData() {
             this.error = this.post = null;
             this.loading = true;
 
