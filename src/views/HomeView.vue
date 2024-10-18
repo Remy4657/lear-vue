@@ -1,15 +1,9 @@
 <script setup>
-import TheWelcome from "../components/TheWelcome.vue";
 import Sidebar from "@/components/Sidebar.vue";
 import Navigation from "@/components/Navigation.vue";
 import Table from "@/components/Table.vue";
-import { ref } from "vue";
+import { onMounted } from "vue";
 
-const count = ref(0);
-const aa = "bb";
-const handle = () => {
-  alert("me");
-};
 </script>
 
 <template>
@@ -19,8 +13,6 @@ const handle = () => {
       <Navigation />
       <Table />
     </div>
-
-    <!-- <button @click="count++">You clicked me {{ count }} times.</button>  -->
   </main>
 </template>
 

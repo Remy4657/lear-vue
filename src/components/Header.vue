@@ -1,11 +1,3 @@
-<script setup>
-import { RouterLink } from "vue-router";
-
-const handleFocus = (e) => {
-    console.log("e: ", e.target.name);
-};
-</script>
-
 <template>
     <header class="d-flex justify-content-between">
         <div class="d-flex">
@@ -18,12 +10,15 @@ const handleFocus = (e) => {
 
         <div class="wrapper d-flex align-items-center">
             <nav>
-                <RouterLink name="home" @click="handleFocus($event)" class="is-focused" to="/">Location list
+                <RouterLink name="home" @click="handleFocus($event)" v-bind:class="{ isFocused: fieldFocus === 'home' }"
+                    to="/">Location list
                 </RouterLink>
-                <RouterLink name="about" @click="handleFocus($event)" to="/about">Location map</RouterLink>
-                <RouterLink name="test" @click="handleFocus($event)" to="/test">
+                <RouterLink name="about" @click="handleFocus($event)"
+                    v-bind:class="{ isFocused: fieldFocus === 'about' }" to="/about">Location map</RouterLink>
+                <RouterLink name="test" @click="handleFocus($event)" v-bind:class="{ isFocused: fieldFocus === 'test' }"
+                    to="/test">
                     Location hidtory</RouterLink>
-                <RouterLink @click="handleFocus($event)" to="/attendance-status">Attendance status</RouterLink>
+                <RouterLink @click="handleFocus($event)" to="/status">Attendance status</RouterLink>
                 <RouterLink @click="handleFocus($event)" to="/attendance-history">Atendance history</RouterLink>
                 <RouterLink @click="handleFocus($event)" to="/office-history">Office usage history</RouterLink>
             </nav>
@@ -43,6 +38,44 @@ const handleFocus = (e) => {
 
     <!-- <RouterView /> -->
 </template>
+
+<script setup>
+import { ref } from "vue";
+import { onMounted } from "vue";
+
+// This function will be called once when the component is mounted (page reload)
+const firstLoad = () => {
+    const path = window.location.pathname; // This will give you "/about"
+    const pageName = path.split("/").filter(Boolean)[0]; // "about"
+    fieldFocus.value = pageName !== undefined ? pageName : "home";
+};
+
+// Call the function inside the `onMounted` lifecycle hook
+onMounted(() => {
+    firstLoad();
+});
+
+// Declare state using ref
+const fieldFocus = ref("");
+const obj = ref({
+    home: false,
+    about: false,
+});
+
+// Methods to modify state
+const handleFocus = (e) => {
+    Object.keys(obj.value).forEach((key) => {
+        console.log("obj: ", obj.value, "key: ", key);
+        obj.value[key] = null;
+    });
+    obj.value[e.target.name] = true;
+    fieldFocus.value = e.target.name;
+    console.log("end loop");
+    console.log("obj: ", obj.value);
+    console.log("field focus: ", fieldFocus.value);
+};
+</script>
+
 <style scoped>
 nav a {
     font-size: 16px;
@@ -52,7 +85,7 @@ nav a {
 }
 
 nav a:hover {
-    color: var(-)
+    color: #006d70;
 }
 
 header {
@@ -66,15 +99,16 @@ header {
 
 span {
     height: fit-content;
+    cursor: pointer;
 }
 
-.is-focused {
+.isFocused {
     position: relative;
     display: inline-block;
     color: #006d70;
 }
 
-.is-focused::after {
+.isFocused::after {
     content: "";
     display: block;
     width: 30px;

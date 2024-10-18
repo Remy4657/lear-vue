@@ -11,7 +11,7 @@ const handle = () => {
 <template>
     <div class="sidebar" style="max-width: 345px">
         <div class="d-flex sidebar-header">
-            <label style="font-size: 15px">Search Criteria</label>
+            <label style="font-size: 18px" class="fw-light">Search Criteria</label>
             <label>You must specify one or more search creteria.</label>
         </div>
         <div class="pd-10px">
@@ -82,15 +82,6 @@ const handle = () => {
             <h6>Location</h6>
             <div class="d-flex justify-content-between mt-13px">
                 <label class="pd-left-5px">Location</label>
-                <select name="cars" id="cars">
-                    <option value="volvo">Volvo</option>
-                </select>
-            </div>
-        </div>
-        <div class="pd-10px">
-            <h6>Employee</h6>
-            <div class="d-flex justify-content-between mt-13px">
-                <label class="pd-left-5px">Employee name</label>
                 <select v-model="selected" name="cars" id="cars" style="height: 25px">
                     <option value="" disabled></option>
                     <option v-if="post" v-for="item in post" :key="key" v-bind:value="{ value: item.title }">
@@ -99,7 +90,14 @@ const handle = () => {
                 </select>
             </div>
         </div>
-        <div class="pd-10px d-flex justify-content-end" style="padding-top: 0px">
+        <div class="pd-10px">
+            <h6>Employee</h6>
+            <div class="d-flex justify-content-between mt-13px">
+                <label class="pd-left-5px">Employee name</label>
+                <input type="text" />
+            </div>
+        </div>
+        <div class="pd-10px d-flex justify-content-end" style="padding-top: 7px">
             <button class="btn btn-clear me-3 fw-bold">Clear</button>
             <button class="btn fw-bold" style="background-color: #0098a3; color: #fff">
                 Search
@@ -158,7 +156,7 @@ label {
 }
 
 label {
-    font-size: 13px;
+    font-size: 14px;
 }
 
 h6 {
@@ -200,6 +198,13 @@ main {
 select {
     width: 225px;
     border-radius: 4px;
+}
+
+input {
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    padding: 0 5px;
 }
 
 .btn {

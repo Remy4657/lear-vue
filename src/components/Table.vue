@@ -1,83 +1,77 @@
-<script setup>
-import { ref } from "vue";
-
-const count = ref(0);
-const aa = "bb";
-const handle = () => {
-    alert("me");
-};
-</script>
-
 <template>
     <div class="mt-4">
         <label class="w-100 text-end">Total 0 items (displaying 0~0 items)</label>
-        <table>
-            <tr class="">
-                <th>NO</th>
-                <th><span>Company Name</span><i class="pi pi-sort"></i></th>
-                <th><span>Organization Name</span><i class="pi pi-sort"></i></th>
-                <th><span>Post</span><i class="pi pi-sort"></i></th>
-                <th><span>Employee Name</span><i class="pi pi-sort"></i></th>
-                <th style="border-right: none">Location</th>
-                <th style="border-left: none"><span></span><i class="pi pi-sort"></i></th>
-            </tr>
-            <tr>
-                <td>Alfreds Futterkiste</td>
-                <td>Maria Anders</td>
-                <td>Germany</td>
-                <td>Alfreds Futterkiste</td>
-                <td>Maria Anders</td>
-                <td>Germany</td>
-                <td>Germany</td>
-            </tr>
-            <tr>
-                <td>Centro comercial Moctezuma</td>
-                <td>Francisco Chang</td>
-                <td>Mexico</td>
-                <td>Centro comercial Moctezuma</td>
-                <td>Francisco Chang</td>
-                <td>Mexico</td>
-                <td>Germany</td>
-            </tr>
-            <tr>
-                <td>Ernst Handel</td>
-                <td>Roland Mendel</td>
-                <td>Austria</td>
-                <td>Ernst Handel</td>
-                <td>Roland Mendel</td>
-                <td>Austria</td>
-                <td>Germany</td>
-            </tr>
-            <tr>
-                <td>Island Trading</td>
-                <td>Helen Bennett</td>
-                <td>UK</td>
-                <td>Island Trading</td>
-                <td>Helen Bennett</td>
-                <td>UK</td>
-                <td>Germany</td>
-            </tr>
-            <tr>
-                <td>Laughing Bacchus Winecellars</td>
-                <td>Yoshi Tannamuri</td>
-                <td>Canada</td>
-                <td>Laughing Bacchus Winecellars</td>
-                <td>Yoshi Tannamuri</td>
-                <td>Canada</td>
-                <td>Germany</td>
-            </tr>
-            <tr>
-                <td>Magazzini Alimentari Riuniti</td>
-                <td>Giovanni Rovelli</td>
-                <td>Italy</td>
-                <td>Magazzini Alimentari Riuniti</td>
-                <td>Giovanni Rovelli</td>
-                <td>Italy</td>
-                <td>Germany</td>
-            </tr>
-        </table>
+        <div style="height: 70vh; overflow: auto">
+            <table>
+                <tr class="">
+                    <th class="text-center">NO</th>
+                    <th><span>Company Name</span><i class="pi pi-sort"></i></th>
+                    <th style="width: 35%">
+                        <span>Organization Name</span><i class="pi pi-sort"></i>
+                    </th>
+                    <th><span>Post</span><i class="pi pi-sort"></i></th>
+                    <th><span>Employee Name</span><i class="pi pi-sort"></i></th>
+                    <th style="border-right: none">Location</th>
+                    <th style="border-left: none; width: 10%">
+                        <span></span><i class="pi pi-sort"></i>
+                    </th>
+                </tr>
+                <tr v-if="post" v-for="(item, key) in post" :key="key">
+                    <td class="text-center">{{ key + 1 }}</td>
+                    <td>{{ item.company_name }}</td>
+                    <td>{{ item.organization_name }}</td>
+                    <td>{{ item.post }}</td>
+                    <td>{{ item.employee_name }}</td>
+                    <td>{{ item.location }}</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <label class="w-100 text-end fw-bold" style="font-size: 13px">Actual location and floor may differ depending on
+            WIFI signal conditions.</label>
     </div>
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            loading: false,
+            post: null,
+            error: null,
+        };
+    },
+    created() {
+        // watch the params of the route to fetch the data again
+        this.$watch(
+            () => this.$route.params.id,
+            this.fetchData,
+            // fetch the data when the view is created and the data is
+            // already being observed
+            { immediate: true }
+        );
+        //this.fetchData;
+    },
+    methods: {
+        async fetchData() {
+            this.error = this.post = null;
+            this.loading = true;
+
+            try {
+                // replace `getPost` with your data fetching util / API wrapper
+                const data = await fetch("http://localhost:3000/posts");
+                this.post = await data.json();
+                console.log("this post: ", this.post);
+            } catch (err) {
+                this.error = err.toString();
+            } finally {
+                this.loading = false;
+            }
+        },
+    },
+};
+</script>
+
 <style scoped>
 table {
     font-family: arial, sans-serif;
