@@ -35,8 +35,6 @@
             </span>
         </div>
     </header>
-
-    <!-- <RouterView /> -->
 </template>
 
 <script setup>
@@ -70,9 +68,7 @@ const handleFocus = (e) => {
     });
     obj.value[e.target.name] = true;
     fieldFocus.value = e.target.name;
-    console.log("end loop");
-    console.log("obj: ", obj.value);
-    console.log("field focus: ", fieldFocus.value);
+
 };
 </script>
 
