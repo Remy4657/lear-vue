@@ -11,18 +11,18 @@ const handle = () => {
 <template>
     <div class="sidebar" style="max-width: 345px">
         <div class="d-flex sidebar-header">
-            <label style="font-size: 18px" class="fw-light">Search Criteria</label>
+            <label style="font-size: 20px" class="fw-light">Search Criteria</label>
             <label>You must specify one or more search creteria.</label>
         </div>
         <div class="pd-10px">
-            <h6>Office</h6>
-            <div class="d-flex justify-content-between mt-13px">
+            <h5>Office</h5>
+            <div class="d-flex justify-content-between mt-13px align-items-center">
                 <label class="pd-left-5px">Office</label>
                 <select name="cars" id="cars">
                     <option value="volvo">Volvo</option>
                 </select>
             </div>
-            <div class="d-flex justify-content-between mt-13px">
+            <div class="d-flex justify-content-between mt-13px align-items-center">
                 <label class="pd-left-5px">Floor</label>
                 <select name="cars" id="cars">
                     <option value="volvo">Volvo</option>
@@ -31,8 +31,8 @@ const handle = () => {
         </div>
 
         <div class="pd-10px">
-            <h6>Company</h6>
-            <div class="d-flex justify-content-between mt-13px">
+            <h5>Company</h5>
+            <div class="d-flex justify-content-between mt-13px align-items-center">
                 <label class="pd-left-5px">Company</label>
                 <select name="cars" id="cars">
                     <option value="volvo">Volvo</option>
@@ -40,38 +40,38 @@ const handle = () => {
             </div>
         </div>
         <div class="pd-10px">
-            <h6>Organizational Hierarchy</h6>
-            <div class="d-flex justify-content-between mt-13px">
+            <h5>Organizational Hierarchy</h5>
+            <div class="d-flex justify-content-between mt-13px align-items-center">
                 <label class="pd-left-5px">No. 1</label>
                 <select name="cars" id="cars">
                     <option value="volvo">Volvo</option>
                 </select>
             </div>
-            <div class="d-flex justify-content-between mt-13px">
+            <div class="d-flex justify-content-between mt-13px align-items-center">
                 <label class="pd-left-5px">Second</label>
                 <select name="cars" id="cars">
                     <option value="volvo">Volvo</option>
                 </select>
             </div>
-            <div class="d-flex justify-content-between mt-13px">
+            <div class="d-flex justify-content-between mt-13px align-items-center">
                 <label class="pd-left-5px">Third</label>
                 <select name="cars" id="cars">
                     <option value="volvo">Volvo</option>
                 </select>
             </div>
-            <div class="d-flex justify-content-between mt-13px">
+            <div class="d-flex justify-content-between mt-13px align-items-center">
                 <label class="pd-left-5px">Fourth</label>
                 <select name="cars" id="cars">
                     <option value="volvo">Volvo</option>
                 </select>
             </div>
-            <div class="d-flex justify-content-between mt-13px">
+            <div class="d-flex justify-content-between mt-13px align-items-center">
                 <label class="pd-left-5px">Fifth</label>
                 <select name="cars" id="cars">
                     <option value="audi">Audi</option>
                 </select>
             </div>
-            <div class="d-flex justify-content-between mt-13px">
+            <div class="d-flex justify-content-between mt-13px align-items-center">
                 <label class="pd-left-5px">6th</label>
                 <select name="cars" id="cars">
                     <option value="volvo">Volvo</option>
@@ -79,10 +79,10 @@ const handle = () => {
             </div>
         </div>
         <div class="pd-10px">
-            <h6>Location</h6>
-            <div class="d-flex justify-content-between mt-13px">
+            <h5>Location</h5>
+            <div class="d-flex justify-content-between mt-13px align-items-center">
                 <label class="pd-left-5px">Location</label>
-                <select v-model="selected" name="cars" id="cars" style="height: 25px">
+                <select v-model="selected" name="cars" id="cars" style="height: 25px; padding: 15px 0">
                     <option value="" disabled></option>
                     <option v-if="post" v-for="item in post" :key="key" v-bind:value="{ value: item.title }">
                         {{ item.title }}
@@ -91,13 +91,13 @@ const handle = () => {
             </div>
         </div>
         <div class="pd-10px">
-            <h6>Employee</h6>
-            <div class="d-flex justify-content-between mt-13px">
+            <h5>Employee</h5>
+            <div class="d-flex justify-content-between mt-13px align-items-center">
                 <label class="pd-left-5px">Employee name</label>
                 <input type="text" />
             </div>
         </div>
-        <div class="pd-10px d-flex justify-content-end" style="padding-top: 7px">
+        <div class="pd-10px d-flex justify-content-end" style="padding-top: 46px">
             <button class="btn btn-clear me-3 fw-bold">Clear</button>
             <button class="btn fw-bold" style="background-color: #0098a3; color: #fff">
                 Search
@@ -150,7 +150,7 @@ export default {
 
 <style scoped>
 h5,
-h6,
+h5,
 label {
     color: #fff;
 }
@@ -159,22 +159,22 @@ label {
     font-size: 14px;
 }
 
-h6 {
+h5 {
     font-size: 14px;
     margin-bottom: 0;
 }
 
-h6 {
+h5 {
     display: flex;
     align-items: center;
 }
 
-h6::before {
+h5::before {
     content: "-";
     margin-right: 5px;
 }
 
-h6::after {
+h5::after {
     content: "";
     flex-grow: 1;
     height: 1px;
@@ -198,13 +198,14 @@ main {
 select {
     width: 225px;
     border-radius: 4px;
+    padding: 4px;
 }
 
 input {
     border-radius: 4px;
     outline: none;
     border: none;
-    padding: 0 5px;
+    padding: 4px 5px;
 }
 
 .btn {

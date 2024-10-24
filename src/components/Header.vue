@@ -21,6 +21,18 @@
                 <RouterLink @click="handleFocus($event)" to="/status">Attendance status</RouterLink>
                 <RouterLink @click="handleFocus($event)" to="/attendance-history">Atendance history</RouterLink>
                 <RouterLink @click="handleFocus($event)" to="/office-history">Office usage history</RouterLink>
+                <div class="dropdown d-inline">
+                    <a class="btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown link
+                    </a>
+
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </div>
             </nav>
         </div>
 
@@ -68,7 +80,6 @@ const handleFocus = (e) => {
     });
     obj.value[e.target.name] = true;
     fieldFocus.value = e.target.name;
-
 };
 </script>
 
